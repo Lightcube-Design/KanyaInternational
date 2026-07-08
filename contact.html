@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us — Kanya International</title>
+  <meta name="description" content="Get in touch with Kanya International. Visit us in Ghorpadi, Pune or call 9422086762. WhatsApp: 9921177816.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="assets/images/logo.png" type="image/png">
+</head>
+<body>
+
+  <header class="header scrolled" id="header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">
+        <img src="assets/images/logo.png" alt="Kanya International">
+      </a>
+      <nav class="nav" id="nav">
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="contact.html" class="active">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="header-cta call-dropdown" id="callDropdown">
+        <button type="button" class="btn btn-primary call-dropdown-toggle" aria-expanded="false" aria-haspopup="true" aria-label="Show phone numbers">
+          <span data-icon="phone"></span>
+          <span class="call-label">Call Us</span>
+          <span class="call-chevron" data-icon="chevron"></span>
+        </button>
+        <div class="call-dropdown-menu" role="menu">
+          <a href="tel:9422086762" class="call-option" role="menuitem">
+            <span class="call-option-icon" data-icon="phone"></span>
+            <span class="call-option-text">
+              <strong>Customer Care</strong>
+              <span>9422086762</span>
+            </span>
+          </a>
+          <a href="https://wa.me/919921177816" class="call-option" role="menuitem" target="_blank" rel="noopener">
+            <span class="call-option-icon whatsapp" data-icon="whatsapp"></span>
+            <span class="call-option-text">
+              <strong>WhatsApp</strong>
+              <span>9921177816</span>
+            </span>
+          </a>
+        </div>
+      </div>
+      <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <section class="page-hero">
+    <div class="container">
+      <div class="breadcrumb">
+        <a href="index.html">Home</a>
+        <span class="separator">/</span>
+        <span>Contact</span>
+      </div>
+      <h1>Contact Us</h1>
+      <p>We respond to all messages within 24 hours</p>
+    </div>
+  </section>
+
+  <section class="contact" style="padding-top:80px">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-info fade-up">
+          <span class="section-label">Reach Out</span>
+          <h2>Let's Start a Conversation</h2>
+          <p>Whether you need newspaper advertising, a new website, or a complete brand campaign — we're here to help. Reach out and let's discuss your project.</p>
+
+          <div class="contact-details">
+            <div class="contact-item">
+              <div class="contact-item-icon" data-icon="mapPin"></div>
+              <div>
+                <h4>Our Office</h4>
+                <p>Suchandra Corner, B. T. Kawade Road,<br>Opp. Kalashankar, Ghorpadi,<br>Pune-411001, MH (India)</p>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-item-icon" data-icon="phone"></div>
+              <div>
+                <h4>Customer Care</h4>
+                <a href="tel:9422086762">9422086762</a>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-item-icon" data-icon="message"></div>
+              <div>
+                <h4>WhatsApp</h4>
+                <a href="https://wa.me/919921177816">9921177816</a>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-item-icon" data-icon="clock"></div>
+              <div>
+                <h4>Business Hours</h4>
+                <p>Mon – Sat: 10:00 AM – 7:00 PM<br>Sunday: Closed</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-form fade-up">
+          <h3 style="margin-bottom:24px;font-family:var(--font-display)">Send Us a Message</h3>
+          <form id="contactForm">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="name">Your Name *</label>
+                <input type="text" id="name" name="name" required placeholder="Your full name">
+              </div>
+              <div class="form-group">
+                <label for="email">Your Email *</label>
+                <input type="email" id="email" name="email" required placeholder="your@email.com">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="phone">Your Phone *</label>
+              <input type="tel" id="phone" name="phone" required placeholder="+91 98765 43210">
+            </div>
+            <div class="form-group">
+              <label for="service">Service Interested In</label>
+              <select id="service" name="service">
+                <option value="">Select a service</option>
+                <option value="newspaper">Newspaper Advertising</option>
+                <option value="digital">Digital Marketing</option>
+                <option value="photography">Commercial Photography</option>
+                <option value="web">Website Design</option>
+                <option value="film">Film Production</option>
+                <option value="event">Event Planning</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="message">Your Message *</label>
+              <textarea id="message" name="message" required placeholder="Tell us about your project or inquiry..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width:100%">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:0 0 80px;background:var(--color-bg)">
+    <div class="container fade-up map-wrap">
+        <iframe
+          src="https://maps.google.com/maps?q=Ghorpadi+Pune+411001&t=&z=14&ie=UTF8&iwloc=&output=embed"
+          width="100%"
+          height="400"
+          style="border:0;display:block"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Kanya International Location">
+        </iframe>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="assets/images/logo.png" alt="Kanya International">
+          <p>M/S Kanya International — Pune's trusted advertising agency since 1991.</p>
+        </div>
+        <div>
+          <h4>Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Services</h4>
+          <ul class="footer-links">
+            <li><a href="services.html">Newspaper Ads</a></li>
+            <li><a href="services.html">Digital Marketing</a></li>
+            <li><a href="services.html">Photography</a></li>
+            <li><a href="services.html">Film Production</a></li>
+          </ul>
+        </div>
+        <div class="footer-contact">
+          <h4>Contact Info</h4>
+          <p><span data-icon="mapPin" class="icon icon-sm"></span> Ghorpadi, Pune-411001</p>
+          <p><span data-icon="phone" class="icon icon-sm"></span> <a href="tel:9422086762">9422086762</a></p>
+          <p><span data-icon="message" class="icon icon-sm"></span> <a href="https://wa.me/919921177816">9921177816</a></p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Kanya International. All rights reserved.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Facebook">f</a>
+          <a href="#" aria-label="Instagram">in</a>
+          <a href="#" aria-label="YouTube">▶</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/919921177816" class="whatsapp-float" aria-label="Chat on WhatsApp" target="_blank" data-icon="whatsapp"></a>
+  <script src="js/icons.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
