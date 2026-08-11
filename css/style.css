@@ -1328,8 +1328,29 @@ h3 { font-size: clamp(1.2rem, 2vw, 1.45rem); }
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 16px;
   padding: 30px 0;
   font-size: 0.84rem;
+}
+
+.footer-credit-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+}
+
+.footer-credit-text {
+  font-size: 0.84rem;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.footer-credit-logo img {
+  display: inline-block;
+  height: 18px;
+  width: auto;
+  min-width: 18px;
+  flex-shrink: 0;
 }
 
 .footer-social { display: flex; gap: 12px; }
@@ -1353,6 +1374,112 @@ h3 { font-size: clamp(1.2rem, 2vw, 1.45rem); }
   border-color: var(--color-primary);
   color: var(--color-white);
   transform: translateY(-3px);
+}
+
+.ad-float {
+  position: fixed;
+  right: 24px;
+  bottom: 130px;
+  z-index: 1200;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 18px 22px;
+  background: linear-gradient(180deg, rgba(123, 94, 167, 0.98) 0%, rgba(142, 102, 194, 0.96) 100%);
+  color: #fff;
+  border-radius: 28px;
+  box-shadow: 0 28px 90px rgba(18, 14, 26, 0.32);
+  text-decoration: none;
+  transition: transform var(--transition), opacity var(--transition), box-shadow var(--transition);
+  min-width: 230px;
+}
+
+.ad-float::before {
+  content: 'Live Ad';
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 12px;
+  background: rgba(255, 255, 255, 0.16);
+  border-radius: 9999px;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.ad-float-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.14);
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.ad-float-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ad-float-copy strong {
+  font-size: 1.1rem;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.ad-float-copy small {
+  display: block;
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.ad-float-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 10px 0;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.ad-float:hover {
+  transform: translateY(-3px);
+  opacity: 0.98;
+  box-shadow: 0 34px 120px rgba(18, 14, 26, 0.34);
+}
+
+.ad-float {
+  animation: float-banner 6s ease-in-out infinite;
+}
+
+@keyframes float-banner {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@media (max-width: 768px) {
+  .ad-float {
+    right: 16px;
+    bottom: 100px;
+    min-width: 200px;
+    padding: 16px 18px;
+  }
 }
 
 /* ---- Animations ---- */
