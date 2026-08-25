@@ -27,7 +27,9 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('[data-icon]').forEach(el => {
     const name = el.getAttribute('data-icon');
     if (ICONS[name]) {
-      if (!el.classList.contains('whatsapp-float')) {
+      // Avoid adding the generic `icon` class to elements that need
+      // the filled WhatsApp SVG (we style .whatsapp separately).
+      if (!el.classList.contains('whatsapp-float') && !el.classList.contains('whatsapp')) {
         el.classList.add('icon');
       }
       el.innerHTML = ICONS[name];

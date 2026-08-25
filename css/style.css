@@ -1045,6 +1045,15 @@ h3 { font-size: clamp(1.2rem, 2vw, 1.45rem); }
   border: 1px solid var(--color-border);
 }
 
+/* WhatsApp variant for contact icon */
+.contact-item-icon.whatsapp {
+  background: #25d366;
+  color: #fff;
+  border-color: rgba(37, 211, 102, 0.18);
+  box-shadow: 0 8px 28px rgba(37, 211, 102, 0.08);
+}
+.contact-item-icon.whatsapp svg { fill: currentColor; stroke: none; width: 22px; height: 22px; }
+
 .contact-item h4 {
   font-family: var(--font-body);
   font-size: 0.75rem;
@@ -1347,9 +1356,9 @@ h3 { font-size: clamp(1.2rem, 2vw, 1.45rem); }
 
 .ad-float {
   position: fixed;
-  right: 24px;
-  bottom: 130px;
-  z-index: 1200;
+  right: 48px;
+  bottom: 48px;
+  z-index: 2200;
   display: flex;
   flex-direction: column;
   align-items: stretch;
@@ -1357,22 +1366,21 @@ h3 { font-size: clamp(1.2rem, 2vw, 1.45rem); }
   padding: 0;
   background: #fff;
   color: #003d6b;
-  border-radius: 32px;
-  box-shadow: 0 12px 40px rgba(0, 61, 107, 0.18), 0 4px 12px rgba(0, 61, 107, 0.1);
+  border-radius: 18px;
+  box-shadow: 0 22px 80px rgba(0, 61, 107, 0.18), 0 8px 22px rgba(0, 0, 0, 0.08);
   text-decoration: none;
   transition: transform var(--transition), box-shadow var(--transition), opacity var(--transition);
-  min-width: 260px;
-  overflow: hidden;
+  width: clamp(240px, 20vw, 360px);
+  max-width: 92vw;
+  overflow: visible;
   border: 1px solid rgba(0, 102, 153, 0.08);
 }
 
 .ad-float-image {
   width: 100%;
-  height: 150px;
+  height: 200px;
   overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: block;
   background: linear-gradient(135deg, #0066a1 0%, #00527a 100%);
   position: relative;
 }
@@ -1385,48 +1393,31 @@ h3 { font-size: clamp(1.2rem, 2vw, 1.45rem); }
 }
 
 .ad-float:hover .ad-float-image img {
-  transform: scale(1.08);
+  transform: scale(1.04);
 }
 
-.ad-float::before {
-  content: 'Promoted';
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 5px 11px;
-  background: rgba(255, 200, 0, 0.92);
-  border-radius: 20px;
-  font-size: 0.62rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: #003d6b;
-  z-index: 10;
-  font-weight: 700;
-  box-shadow: 0 4px 12px rgba(255, 200, 0, 0.3);
-}
+.ad-float::before { display: none; }
 
 /* Close button for floating ads */
 .ad-close {
   position: absolute;
-  top: 8px;
-  left: 8px;
-  width: 30px;
-  height: 30px;
+  top: -18px;
+  right: -18px;
+  left: auto;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
-  background: rgba(255,255,255,0.95);
+  background: #fff;
   color: #003d6b;
-  border: none;
+  border: 2px solid rgba(0,102,153,0.08);
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: 18px;
+  font-size: 20px;
   line-height: 1;
   cursor: pointer;
-  z-index: 20;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+  z-index: 99999;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.18);
 }
 
 .ad-close:hover { transform: scale(1.06); }
@@ -1439,8 +1430,105 @@ h3 { font-size: clamp(1.2rem, 2vw, 1.45rem); }
   pointer-events: none;
 }
 
-/* Position second banner slightly above first so they don't overlap */
-.ad-float-2 { bottom: 220px; }
+
+/* Container to stack multiple floating banners without overlap */
+.ad-float-wrap {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 1200;
+  display: flex;
+  flex-direction: column-reverse; /* place the first banner at the bottom */
+  gap: 12px;
+  align-items: flex-end;
+  pointer-events: none; /* allow clicks to pass to inner ad anchors */
+  max-height: calc(100vh - 48px);
+  overflow: hidden;
+}
+
+/* Left-side wrapper mirrors the right one */
+.ad-float-wrap-left {
+  position: fixed;
+  left: 24px;
+  bottom: 24px;
+  z-index: 1200;
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 12px;
+  align-items: flex-start;
+  pointer-events: none;
+  max-height: calc(100vh - 48px);
+  overflow: hidden;
+}
+
+.ad-float-wrap .ad-float {
+  position: relative;
+  pointer-events: auto;
+}
+
+.ad-float-wrap-left .ad-float {
+  position: relative;
+  pointer-events: auto;
+}
+
+/* Compact default state: smaller banners */
+.ad-float {
+  /* keep responsive rules from earlier but ensure desktop size is primary */
+  transform-origin: right center;
+}
+
+.ad-float .ad-float-image { height: 96px; }
+.ad-float .ad-float-copy strong { font-size: 1rem; }
+.ad-float .ad-float-copy small { display: none; }
+.ad-float .ad-float-action { display: inline-flex; }
+
+.ad-float .ad-float-action {
+  justify-content: center;
+  align-items: center;
+  width: calc(100% - 28px);
+  margin: 12px 14px 18px 14px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #0066a1, #004a75);
+  color: #fff;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  box-shadow: 0 8px 28px rgba(0, 76, 133, 0.18);
+  text-decoration: none;
+}
+
+.ad-float .ad-float-action:hover { transform: translateY(-2px); }
+
+/* Expand on hover / focus for desktop */
+@media (hover: hover) and (min-width: 600px) {
+  .ad-float { transition: transform 0.22s cubic-bezier(.2,.9,.2,1), box-shadow 0.2s ease; }
+  .ad-float:hover, .ad-float:focus-within {
+    transform: scale(1.12) translateY(-6px);
+    z-index: 1300;
+    box-shadow: 0 20px 60px rgba(0, 61, 107, 0.25), 0 8px 24px rgba(0,0,0,0.08);
+  }
+  .ad-float:hover .ad-float-image, .ad-float:focus-within .ad-float-image {
+    height: 150px;
+  }
+  .ad-float:hover .ad-float-copy small, .ad-float:focus-within .ad-float-copy small { display: block; }
+  .ad-float:hover .ad-float-action, .ad-float:focus-within .ad-float-action { display: inline-flex; }
+}
+
+/* Compact promo variant for stacked layout */
+.ad-float.ad-promo {
+  min-width: 120px;
+  width: 120px;
+  border-radius: 16px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ad-float.ad-promo .ad-float-image { height: 86px; }
+.ad-float.ad-promo .ad-float-badge { margin: 8px 8px 6px 8px; padding: 6px 10px; font-size: 0.7rem; }
+.ad-float.ad-promo .ad-float-copy { padding: 0 8px 10px 8px; text-align:center; }
+.ad-float.ad-promo .ad-float-action { display:none; }
 
 
 .ad-float-badge {
@@ -1511,7 +1599,150 @@ h3 { font-size: clamp(1.2rem, 2vw, 1.45rem); }
 }
 
 .ad-float {
-  animation: float-banner-pro 5s ease-in-out infinite;
+  animation: none;
+}
+
+/* Disable float wobble for compact promos to keep them stable */
+.ad-float.ad-promo {
+  animation: none;
+}
+
+/* Avoid overlapping the WhatsApp float on wider screens */
+@media (min-width: 600px) {
+  .ad-float-wrap { right: 96px; }
+}
+
+/* --- Banner visual polish overrides --- */
+.ad-float-wrap .ad-float {
+  min-width: 200px !important;
+  width: 200px !important;
+  border-radius: 20px !important;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.ad-float-wrap .ad-float .ad-float-image {
+  height: 120px !important;
+  border-top-left-radius: inherit;
+  border-top-right-radius: inherit;
+}
+
+.ad-float-wrap .ad-float .ad-float-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  display: block;
+  transition: transform 0.35s ease;
+}
+
+.ad-float-wrap .ad-float .ad-float-copy {
+  padding: 12px 14px 14px 14px !important;
+}
+
+/* move close button to top-right for better visual balance */
+.ad-float-wrap .ad-float .ad-close {
+  top: 10px;
+  right: 10px;
+  left: auto;
+}
+
+/* left banner: position close on top-left */
+.ad-float-wrap-left .ad-float.left .ad-close {
+  top: 10px;
+  left: 10px;
+  right: auto;
+}
+
+/* left close override: place outside card for symmetry */
+.ad-float-wrap-left .ad-float.left .ad-close {
+  top: -18px;
+  left: -18px;
+}
+
+.ad-float.ad-promo {
+  min-width: 140px !important;
+  width: 140px !important;
+  padding-bottom: 8px;
+}
+
+@media (hover: hover) and (min-width: 600px) {
+  .ad-float.ad-promo:hover { transform: scale(1.08) translateY(-4px); }
+  .ad-float.ad-promo:hover .ad-float-copy small { display: block; font-size: 0.78rem; }
+}
+
+@media (max-width: 700px) {
+  .ad-float.ad-promo { display: none !important; }
+  .ad-float-wrap { right: 16px; bottom: 16px; }
+  .ad-float-wrap-left { left: 16px; bottom: 16px; }
+
+/* Left-side ad variant */
+.ad-float.ad-left {
+  right: auto;
+  left: 48px;
+  transform-origin: left center;
+}
+
+.ad-float.ad-left .ad-close {
+  right: auto;
+  left: -18px;
+}
+
+@media (max-width: 720px) {
+  /* hide left-side duplicate on narrow viewports to avoid overlap */
+  .ad-float.ad-left { display: none; }
+}
+
+/* Ensure symmetrical compact state and outward expansion */
+.ad-float {
+  position: fixed;
+  bottom: 28px;
+  right: 28px; /* default: right-side */
+  width: 72px;
+  height: 72px;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-radius: 14px;
+  overflow: visible;
+  transition: width 0.32s cubic-bezier(.2,.9,.2,1), transform 0.28s ease, box-shadow 0.28s ease;
+  transform-origin: right center;
+  z-index: 2200;
+}
+
+.ad-float .ad-float-copy,
+.ad-float .ad-float-action {
+  display: none;
+}
+
+/* Right ad expands to the right (stays anchored at right edge) */
+.ad-float:hover,
+.ad-float:focus-within { width: 320px; box-shadow: 0 30px 80px rgba(0,0,0,0.18); }
+.ad-float:hover .ad-float-copy,
+.ad-float:focus-within .ad-float-copy,
+.ad-float:hover .ad-float-action,
+.ad-float:focus-within .ad-float-action { display: flex; }
+
+/* Left variant mirrors: anchor to left edge and expand leftwards */
+.ad-float.ad-left { left: 28px; right: auto; transform-origin: left center; }
+.ad-float.ad-left:hover,
+.ad-float.ad-left:focus-within { width: 320px; }
+
+/* Reduce size if viewport is too narrow to avoid overlap */
+@media (max-width: 1100px) {
+  .ad-float:hover, .ad-float.ad-left:hover { width: 260px; }
+}
+
+@media (max-width: 720px) {
+  .ad-float { right: 14px; bottom: 14px; }
+  .ad-float.ad-left { display: none; }
+}
+}
+
+/* Hide left banner on smaller screens to avoid clutter */
+@media (max-width: 900px) {
+  .ad-float-wrap-left { display: none; }
 }
 
 @keyframes float-banner-pro {
@@ -1523,20 +1754,40 @@ h3 { font-size: clamp(1.2rem, 2vw, 1.45rem); }
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 480px) {
+  .ad-float-wrap { right: 12px; bottom: 12px; }
+  .ad-float-image { height: 110px; }
+  .ad-float { min-width: 220px; width: 220px; }
+}
+
+@media (max-width: 900px) {
   .ad-float {
     right: 16px;
-    bottom: 100px;
-    min-width: 240px;
+    bottom: 90px;
+    width: min(320px, 86vw);
   }
 
   .ad-float-image {
-    height: 120px;
+    height: 160px;
   }
 
   .ad-float-copy strong {
     font-size: 1.08rem;
   }
+}
+
+/* Final overrides: ensure left/right ads do not overlap and respect mirror */
+.ad-float { right: 28px !important; left: auto !important; }
+.ad-float.ad-left { left: 28px !important; right: auto !important; transform-origin: left center !important; }
+.ad-float { margin: 0 !important; }
+.ad-float.ad-left .ad-close { left: -18px !important; right: auto !important; }
+
+/* If both ads present, nudge them slightly apart vertically to avoid pixel overlap */
+.ad-float[data-ad-id="dental"] { bottom: 28px !important; }
+.ad-float[data-ad-id="dental-left"] { bottom: 28px !important; }
+
+@media (max-width: 720px) {
+  .ad-float.ad-left { display: none !important; }
 }
 
 
@@ -1555,25 +1806,7 @@ h3 { font-size: clamp(1.2rem, 2vw, 1.45rem); }
 .fade-up:nth-child(6) { transition-delay: 0.5s; }
 
 /* ---- WhatsApp ---- */
-.whatsapp-float {
-  position: fixed;
-  bottom: 32px;
-  right: 32px;
-  z-index: 999;
-  width: 58px;
-  height: 58px;
-  background: #25d366;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 6px 24px rgba(37, 211, 102, 0.4);
-  transition: all var(--transition);
-  color: white;
-}
-
-.whatsapp-float svg { width: 28px; height: 28px; fill: white; }
-.whatsapp-float:hover { transform: scale(1.12); box-shadow: 0 8px 32px rgba(37, 211, 102, 0.5); }
+/* WhatsApp float removed */
 
 /* ---- Map ---- */
 .map-wrap {

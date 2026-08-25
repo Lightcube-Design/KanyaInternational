@@ -68,6 +68,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
   fadeElements.forEach(el => observer.observe(el));
 
+  // Relocate floating ad containers to document.body to avoid stacking-context clipping
+  function relocateAdWraps() {
+    const wraps = document.querySelectorAll('.ad-float-wrap, .ad-float-wrap-left');
+    wraps.forEach(wrap => {
+      try {
+        if (wrap.parentElement !== document.body) {
+          document.body.appendChild(wrap);
+          wrap.style.pointerEvents = 'auto';
+        }
+      } catch (err) {
+        // ignore
+      }
+    });
+  }
+
+  relocateAdWraps();
+
   const contactForm = document.getElementById('contactForm');
   if (contactForm) {
     contactForm.addEventListener('submit', (e) => {
@@ -101,13 +118,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Floating ad close buttons
   function initAdCloseButtons() {
+    // Remove any ads flagged hidden in localStorage before binding events
+    document.querySelectorAll('.ad-float').forEach(ad => {
+      const id = ad.dataset.adId;
+      if (id && localStorage.getItem('ad-hidden-' + id)) {
+        if (ad && ad.parentNode) ad.parentNode.removeChild(ad);
+      }
+    });
+
     document.querySelectorAll('.ad-close').forEach(btn => {
       btn.addEventListener('click', (e) => {
         e.preventDefault();
         e.stopPropagation();
         const ad = btn.closest('.ad-float');
         if (!ad) return;
+        const id = ad.dataset.adId;
+        // animate then remove
         ad.classList.add('closing');
+        if (id) {
+          try { localStorage.setItem('ad-hidden-' + id, '1'); } catch (err) { /* ignore */ }
+        }
         setTimeout(() => {
           if (ad && ad.parentNode) ad.parentNode.removeChild(ad);
         }, 380);
@@ -116,4 +146,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   initAdCloseButtons();
+  // re-run relocation in case DOM changes move nodes later
+  setTimeout(relocateAdWraps, 500);
 });
