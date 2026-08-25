@@ -98,4 +98,22 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   });
+
+  // Floating ad close buttons
+  function initAdCloseButtons() {
+    document.querySelectorAll('.ad-close').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const ad = btn.closest('.ad-float');
+        if (!ad) return;
+        ad.classList.add('closing');
+        setTimeout(() => {
+          if (ad && ad.parentNode) ad.parentNode.removeChild(ad);
+        }, 380);
+      });
+    });
+  }
+
+  initAdCloseButtons();
 });
